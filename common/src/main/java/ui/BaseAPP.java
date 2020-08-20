@@ -5,8 +5,12 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class BaseAPP {
@@ -70,5 +74,27 @@ public class BaseAPP {
         }
     }
 
+    //计算元素的中心位置
+    public Map locationValue(WebElement element) {
+        HashMap locationValue =new HashMap();
+        Point start = element.getLocation();//获取元素的起始x和y坐标
+        int startX = start.x;
+        int startY = start.y;
+        //元素的宽和高
+        Dimension q =element.getSize();
+        System.out.println(q.getWidth());
+        int x =q.getWidth();
+        int y = q.getHeight();
+        //System.out.println("坐标轴差:X值为"+x+"Y值为"+y);
+
+        //计算出元素的终点坐标
+        int endX = x + startX;
+        int endY = y + startY;
+        //计算中间点坐标
+        //System.out.println((endX + startX) / 2);
+        //System.out.println((endY + startY-y/2) / 2);
+        locationValue.put((endX + startX) / 2,(endY +startY-y/2) / 2);
+        return locationValue;
+    }
 
 }
