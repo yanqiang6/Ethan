@@ -3,6 +3,8 @@ package ui;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.IOException;
@@ -34,11 +36,21 @@ public class BaseWeb {
     }
 
     /**
-     * 方法说明:通用访问任意url的方法
-     * 参数说明:
-     * background传入0时,不启动浏览器
+     * @title 通用访问任意url的方法
+     * @Description background传入0时,不启动浏览器
      */
-    public static void login(String url, Integer background) throws IOException {
+    public static void openUrl(String url, Integer background) throws IOException {
 
+        if (background == 0) {
+            //设置参数
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--disable-gpu");
+            driver = new ChromeDriver(chromeOptions);
+        } else {
+            driver = new ChromeDriver();
+        }
+        driver.get(url);
+        driver.manage().window().maximize();
     }
 }
