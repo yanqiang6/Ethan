@@ -13,11 +13,11 @@ import java.io.IOException;
  * @Date 2020/8/23 19:26 Create
  */
 //测试[common] utils.BaseUtils中的loadConfigFile方法
-public class TestLodConfigFile extends BaseUtils{
+public class TestReadAccountInfo extends BaseUtils{
     @Test
-    public void testLodConfigFile() throws IOException {
+    public void tesReadAccountInfo() throws IOException {
         String path=getPath("\\src\\main\\resources\\config\\DemoConfig.yaml");
-        loadConfigFile(path,"test");
+        readAccountInfo(path,"test");
 
     }
 }
