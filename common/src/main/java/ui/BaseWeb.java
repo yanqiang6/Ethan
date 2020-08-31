@@ -13,6 +13,28 @@ import java.util.ArrayList;
 public class BaseWeb {
     public static WebDriver driver;
 
+    /**
+     * @title WebDriver初始化，并访问任意url
+     * @Description background传入0时,不启动浏览器
+     */
+    public static void openUrl(String url, Integer background) throws IOException {
+        String version="84";
+        String chromeDriverPath =System.getProperty("user.dir")+"\\src\\main\\resources\\driver\\chrome\\"+version+"\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);//设置驱动的路径
+        if (background == 0) {
+            //设置参数
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--disable-gpu");
+            driver = new ChromeDriver(chromeOptions);
+        } else {
+            driver = new ChromeDriver();
+        }
+        driver.manage().window().maximize();//浏览器最大化
+        driver.get(url);
+
+    }
+
     //对元素进行点击操作
     public static void click(By by) {
         driver.findElement(by).click();
@@ -35,22 +57,5 @@ public class BaseWeb {
         driver.switchTo().window(tabs.get(i));
     }
 
-    /**
-     * @title 通用访问任意url的方法
-     * @Description background传入0时,不启动浏览器
-     */
-    public static void openUrl(String url, Integer background) throws IOException {
 
-        if (background == 0) {
-            //设置参数
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--headless");
-            chromeOptions.addArguments("--disable-gpu");
-            driver = new ChromeDriver(chromeOptions);
-        } else {
-            driver = new ChromeDriver();
-        }
-        driver.get(url);
-        driver.manage().window().maximize();
-    }
 }
