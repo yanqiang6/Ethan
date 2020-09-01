@@ -1,12 +1,19 @@
 package utils;
 
 import api.model.ConfigModel;
+import com.alibaba.fastjson.JSON;
+import io.restassured.response.Response;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+
+import static io.restassured.RestAssured.given;
+
 
 /**
  * @version 1.0
@@ -35,6 +42,23 @@ public class BaseUtils {
         Properties savePro = new Properties();
         pro.load(new FileInputStream(path));
         return pro.getProperty(key);
+    }
+
+    //调用企业微信机器人,发送push消息
+    public void sendMessage(String url,String content) {
+        Map<String, Object> dataMap = new HashMap<>();
+        Map<String, Object> textMap = new HashMap<>();
+        dataMap.put("msgtype", "text");
+        textMap.put("content", content);
+        textMap.put("mentioned_list", Arrays.asList("@all"));
+        dataMap.put("text", textMap);
+        String jsonData = JSON.toJSONString(dataMap);
+        Response res =
+                given().
+                        contentType("application/json;charset=UTF-8").
+                        body(jsonData).
+                        when()
+                        .post(url);
     }
 
 }

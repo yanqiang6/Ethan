@@ -1,0 +1,11 @@
+env:
+  test:
+    "username":  "testName"
+    "password":  "testPwd"
+  staging:
+    "username":  "stagingName"
+    "password":  "stagingPwd"
+  online:
+    "username":  "onlineName"
+    "password":  "onlinePwd"
+
