@@ -61,6 +61,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.15</version>
         </dependency>
+        <!-- mustache模板技术 -->
+        <dependency>
+            <groupId>com.github.spullara.mustache.java</groupId>
+            <artifactId>compiler</artifactId>
+            <version>0.9.6</version>
+        </dependency>
         <dependency>
             <groupId>com.yan</groupId>
             <artifactId>common</artifactId>

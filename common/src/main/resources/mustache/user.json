@@ -1,0 +1,33 @@
+{
+  "errcode": 0,
+  "errmsg": "ok",
+  "userid": "YanQ",
+  "name": "{{name}}",
+  "department": [
+    1
+  ],
+  "position": "",
+  "mobile": "12300000168",
+  "gender": "1",
+  "email": "",
+  "avatar": "http://www.baidu.com",
+  "status": 1,
+  "isleader": 0,
+  "extattr": {
+    "attrs": [
+
+    ]
+  },
+  "telephone": "",
+  "enable": 1,
+  "hide_mobile": 0,
+  "order": [
+    0
+  ],
+  "qr_code": "http://www.baidu.com",
+  "alias": "",
+  "is_leader_in_dept": [
+    0
+  ],
+  "thumb_avatar": "http://www.baidu.com"
+}
