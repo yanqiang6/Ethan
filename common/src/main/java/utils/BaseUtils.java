@@ -4,6 +4,11 @@ import api.model.ConfigModel;
 import com.alibaba.fastjson.JSON;
 import io.restassured.response.Response;
 
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import java.io.File;
 import java.io.FileInputStream;
 
 import java.io.IOException;
@@ -42,6 +47,17 @@ public class BaseUtils {
         Properties savePro = new Properties();
         pro.load(new FileInputStream(path));
         return pro.getProperty(key);
+    }
+    //使用poi读取Excel文件,某个sheet页
+    public Sheet loadExcel(String path,int n) throws Exception{
+        File inputFile=new File(path);
+        //使用字符流去接File的数据
+         FileInputStream inputStream=new FileInputStream(inputFile);
+        //workbook去接fileInputStream
+        Workbook workbook= WorkbookFactory.create(inputStream);
+        //读取到了excel文件，但是需要去判断是哪一个工作簿，要用到Sheet类
+        Sheet sheet = workbook.getSheetAt(n);
+        return sheet;
     }
 
     //调用企业微信机器人,发送push消息
