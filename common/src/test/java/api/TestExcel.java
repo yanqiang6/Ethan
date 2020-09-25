@@ -18,7 +18,7 @@ public class TestExcel extends BaseUtils {
         System.out.println(sheet.getRow(0).getPhysicalNumberOfCells());
 
     }
-
+    @Test
     public void testGetExcelValue() throws Exception{
         getExcelValue(path,0,1,4);
     }
