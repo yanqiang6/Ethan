@@ -9,12 +9,19 @@ import utils.BaseUtils;
  * @version 1.0
  * @date 2020/9/24 16:44 Create
  */
-public class TestLoadExcel extends BaseUtils {
+public class TestExcel extends BaseUtils {
+    String path=getPath("\\src\\main\\resources\\excel\\demo.xlsx");
     @Test
     public void testLoadExcel() throws Exception {
-        String path=getPath("\\src\\main\\resources\\excel\\demo.xlsx");
         Sheet sheet= loadExcel(path,0);
         System.out.println(sheet.getPhysicalNumberOfRows());
         System.out.println(sheet.getRow(0).getPhysicalNumberOfCells());
+
     }
+
+    public void testGetExcelValue() throws Exception{
+        getExcelValue(path,0,1,4);
+    }
+
+
 }

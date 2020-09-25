@@ -4,6 +4,7 @@ import api.model.ConfigModel;
 import com.alibaba.fastjson.JSON;
 import io.restassured.response.Response;
 
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -58,6 +59,19 @@ public class BaseUtils {
         //读取到了excel文件，但是需要去判断是哪一个工作簿，要用到Sheet类
         Sheet sheet = workbook.getSheetAt(n);
         return sheet;
+    }
+    //读取Excel文件,某行某列的值
+    public void getExcelValue(String path,int sheetNum,int x,int y) throws Exception {
+        Sheet currentSheet=loadExcel(path,sheetNum);
+        if(x>0 && y>0){
+            x-=1;//row照正常输入，需要-1
+            y-=1;//cell按照正常输入，需要-1
+            Row sheetRow=currentSheet.getRow(x);
+            System.out.println(sheetRow.getCell(y).getStringCellValue());
+        }else {
+            System.out.println("输入有误，请输入大于0的正整数");
+        }
+
     }
 
     //调用企业微信机器人,发送push消息
