@@ -31,7 +31,6 @@ public class BaseUtils {
     public String getPath(String path){
         return System.getProperty("user.dir")+path;
     }
-
     //yaml方式加载配置文件:获取当前环境对应的账号和密码
     public HashMap<String,String> readAccountInfo(String path, String currentEnv) throws IOException {
         ConfigModel configModel=new ConfigModel();

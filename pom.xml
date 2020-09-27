@@ -74,16 +74,18 @@
             <version>4.1.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.yan</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+        <!--&lt;!&ndash; allure-junit5 测试报告 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>io.qameta.allure</groupId>-->
+            <!--<artifactId>allure-junit5</artifactId>-->
+            <!--<version>2.13.5</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
 
     </dependencies>
     <build>
-
+        <!-- 指定jdk版本，防止jdk构建版本变动 解决每次右键项目名-maven->update project 时候，项目jdk版本变了，变回1.5版本或者其他版本 -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -93,6 +95,16 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <!--&lt;!&ndash; allure-junit5 测试报告 &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>io.qameta.allure</groupId>-->
+                <!--<artifactId>allure-maven</artifactId>-->
+                <!--<version>2.10.0</version>-->
+                <!--<configuration>-->
+                    <!--<reportVersion>2.4.1</reportVersion>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
         </plugins>
     </build>
 
