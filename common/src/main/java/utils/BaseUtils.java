@@ -70,7 +70,20 @@ public class BaseUtils {
         }else {
             System.out.println("输入有误，请输入大于0的正整数");
         }
+    }
 
+    //遍历Excel文件中的所有值
+    public void getExcel(String path,int sheetNum) throws Exception {
+        Sheet currentSheet=loadExcel(path,sheetNum);
+        int rows=currentSheet.getPhysicalNumberOfRows();//获取行数
+        int columns=currentSheet.getRow(0).getPhysicalNumberOfCells();//获取列数
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                String cell=currentSheet.getRow(i).getCell(j).toString();
+                System.out.println(cell);
+
+            }
+        }
     }
 
     //调用企业微信机器人,发送push消息

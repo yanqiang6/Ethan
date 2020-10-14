@@ -25,5 +25,9 @@ public class TestExcel extends BaseUtils {
         getExcelValue(path,0,1,4);
     }
 
-
+    //test获取Excel某行某列的值
+    @Test
+    public void getExcel() throws Exception{
+        getExcel(path,0);
+    }
 }
