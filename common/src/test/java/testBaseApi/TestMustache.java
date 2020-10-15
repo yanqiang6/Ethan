@@ -1,4 +1,4 @@
-package api;
+package testBaseApi;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;

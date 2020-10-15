@@ -1,6 +1,7 @@
 package testUi;
 
 import org.junit.jupiter.api.Test;
+import ui.BaseWeb;
 
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
  * @Date 2020/8/22 22:58 Create
  */
 //测试[common] testUtils.testUi.BaseWeb中的openUrl方法
-public class TestOpenUrl extends BaseWeb{
+public class TestOpenUrl extends BaseWeb {
     @Test
     public  void testOpenUrl() throws IOException {
         openUrl("https://www.baidu.com",1);

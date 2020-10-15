@@ -1,4 +1,4 @@
-package testUtils;
+package utils;
 import org.jasypt.util.text.BasicTextEncryptor;
 
 import java.io.FileInputStream;

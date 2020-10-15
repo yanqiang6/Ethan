@@ -1,4 +1,4 @@
-package testUi;
+package ui;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

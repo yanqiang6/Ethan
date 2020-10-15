@@ -1,4 +1,4 @@
-package testUtils;
+package utils;
 
 import java.io.IOException;
 import java.sql.Connection;

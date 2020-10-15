@@ -1,4 +1,4 @@
-package testBaseApi.model;
+package baseApi.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;

@@ -2,7 +2,7 @@ package testBaseApi;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.jupiter.api.Test;
-import testUtils.BaseUtils;
+import utils.BaseUtils;
 
 /**
  * @author qiang.yan
