@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.support.ui.Select;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class BaseWeb {
     public static WebDriver driver;
@@ -57,5 +57,29 @@ public class BaseWeb {
         driver.switchTo().window(tabs.get(i));
     }
 
+    //当前页面有多个元素时，需要使用findElements
+    public static List<WebElement> getEleList(By element,By elements){
+        return driver.findElement(element).findElements(elements);
+    }
+
+    //处理下拉选择框
+    public static void selectEleByIndex(By by,int index){
+        //定位到下拉框元素
+        WebElement elementDown=driver.findElement(by);
+        Select select=new Select(elementDown);
+        sleep(100);
+        select.selectByIndex(index);
+    }
+
+
+
+    //设置强制等待时间,单位为ms
+    public static void sleep(int millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
