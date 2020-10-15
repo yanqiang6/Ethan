@@ -1,6 +1,6 @@
-package utils;
+package testUtils;
 
-import api.model.ConfigModel;
+import testBaseApi.model.ConfigModel;
 import com.alibaba.fastjson.JSON;
 import io.restassured.response.Response;
 

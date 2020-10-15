@@ -1,4 +1,4 @@
-package ui;
+package testUi;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -70,8 +70,6 @@ public class BaseWeb {
         sleep(100);
         select.selectByIndex(index);
     }
-
-
 
     //设置强制等待时间,单位为ms
     public static void sleep(int millis){

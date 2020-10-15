@@ -1,9 +1,6 @@
-package api;
+package testUtils;
 
 import org.junit.jupiter.api.Test;
-import utils.DateUtils;
-
-import java.util.Calendar;
 
 /**
  * @author qiang.yan

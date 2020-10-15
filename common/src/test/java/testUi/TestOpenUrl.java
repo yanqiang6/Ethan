@@ -1,7 +1,6 @@
-package ui;
+package testUi;
 
 import org.junit.jupiter.api.Test;
-import ui.BaseWeb;
 
 import java.io.IOException;
 
@@ -10,7 +9,7 @@ import java.io.IOException;
  * @Author Ethan
  * @Date 2020/8/22 22:58 Create
  */
-//测试[common] utils.ui.BaseWeb中的openUrl方法
+//测试[common] testUtils.testUi.BaseWeb中的openUrl方法
 public class TestOpenUrl extends BaseWeb{
     @Test
     public  void testOpenUrl() throws IOException {
