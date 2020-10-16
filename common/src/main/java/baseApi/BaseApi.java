@@ -1,4 +1,4 @@
-package api;
+package baseApi;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -47,8 +47,8 @@ public class BaseApi {
         return  res;
     }
     //response转json
-    public void resToJson(Response res){
-        JSONObject json = JSON.parseObject(res.getBody().asString());
+    public JSONObject resToJson(Response res){
+        return JSON.parseObject(res.getBody().asString());
     }
 
 }
