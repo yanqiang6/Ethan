@@ -9,10 +9,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,13 +27,14 @@ import static io.restassured.RestAssured.given;
 public class BaseUtils {
     //获取当前工程所在目录下文件的绝对路径
     public String getPath(String path){
+
         return System.getProperty("user.dir")+path;
+
     }
     //yaml方式加载配置文件:获取当前环境对应的账号和密码
     public HashMap<String,String> readAccountInfo(String path, String currentEnv) throws IOException {
         ConfigModel configModel=new ConfigModel();
-        //根据当前环境，获取环境对应的账号和密码
-        HashMap<String,String> accountInfo= configModel.load(path).env.get(currentEnv);
+        HashMap<String,String> accountInfo= configModel.load(path).env.get(currentEnv);//根据当前环境，获取环境对应的账号和密码
 //        for (Map.Entry<String,String > info:accountInfo.entrySet()){
 //            System.out.println(info.getKey()+":"+info.getValue());
 //        }
@@ -48,23 +47,29 @@ public class BaseUtils {
         pro.load(new FileInputStream(path));
         return pro.getProperty(key);
     }
+
+    //将k-v值 保存存到resources的指定路径
+    public void saveFile(String key,String value,String savePath,Boolean append) throws IOException {
+        FileOutputStream outFile=new FileOutputStream(savePath,append);//true表示追加打开,false会覆盖
+        Properties pro=new Properties();
+        pro.setProperty(key,value);
+        pro.store(outFile,"save");
+    }
+    
     //使用poi读取Excel文件,某个sheet页
     public Sheet loadExcel(String path,int n) throws Exception{
         File inputFile=new File(path);
-        //使用字符流去接File的数据
-         FileInputStream inputStream=new FileInputStream(inputFile);
-        //workbook去接fileInputStream
-        Workbook workbook= WorkbookFactory.create(inputStream);
-        //读取到了excel文件，但是需要去判断是哪一个工作簿，要用到Sheet类
-        Sheet sheet = workbook.getSheetAt(n);
+        FileInputStream inputStream=new FileInputStream(inputFile); //使用字符流去接File的数据
+        Workbook workbook= WorkbookFactory.create(inputStream); //workbook去接fileInputStream
+        Sheet sheet = workbook.getSheetAt(n); //读取到了excel文件，但是需要去判断是哪一个工作簿，要用到Sheet类
         return sheet;
     }
     //读取Excel文件,某行某列的值
     public void getExcelValue(String path,int sheetNum,int x,int y) throws Exception {
         Sheet currentSheet=loadExcel(path,sheetNum);
         if(x>0 && y>0){
-            x-=1;//row照正常输入，需要-1
-            y-=1;//cell按照正常输入，需要-1
+            x-=1; //row照正常输入，需要-1
+            y-=1; //cell按照正常输入，需要-1
             Row sheetRow=currentSheet.getRow(x);
             System.out.println(sheetRow.getCell(y).getStringCellValue());
         }else {
@@ -75,8 +80,8 @@ public class BaseUtils {
     //遍历Excel文件中的所有值
     public void getExcel(String path,int sheetNum) throws Exception {
         Sheet currentSheet=loadExcel(path,sheetNum);
-        int rows=currentSheet.getPhysicalNumberOfRows();//获取行数
-        int columns=currentSheet.getRow(0).getPhysicalNumberOfCells();//获取列数
+        int rows=currentSheet.getPhysicalNumberOfRows(); //获取行数
+        int columns=currentSheet.getRow(0).getPhysicalNumberOfCells(); //获取列数
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 String cell=currentSheet.getRow(i).getCell(j).toString();

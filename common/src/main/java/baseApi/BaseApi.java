@@ -51,4 +51,9 @@ public class BaseApi {
         return JSON.parseObject(res.getBody().asString());
     }
 
+    //保存Cookie
+    public void saveCookie(Response res){
+        JSONObject json=resToJson(res);
+    }
+
 }
