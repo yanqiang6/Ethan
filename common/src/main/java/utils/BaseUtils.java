@@ -11,10 +11,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import java.io.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 import static io.restassured.RestAssured.given;
 
@@ -48,14 +45,21 @@ public class BaseUtils {
         return pro.getProperty(key);
     }
 
-    //将k-v值 保存存到resources的指定路径
-    public void saveFile(String key,String value,String savePath,Boolean append) throws IOException {
+    //将map保存存到resources的指定路径
+    public void saveFile(HashMap<String,String> saveMaps,String savePath,Boolean append) throws IOException {
         FileOutputStream outFile=new FileOutputStream(savePath,append);//true表示追加打开,false会覆盖
         Properties pro=new Properties();
-        pro.setProperty(key,value);
+        //使用Iterator遍历HashMap
+        Iterator it=saveMaps.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<String,String> entry = (Map.Entry) it.next() ;
+            String key = entry.getKey().toString() ;
+            String value = entry.getValue().toString() ;
+            pro.setProperty(key,value);
+        }
         pro.store(outFile,"save");
     }
-    
+
     //使用poi读取Excel文件,某个sheet页
     public Sheet loadExcel(String path,int n) throws Exception{
         File inputFile=new File(path);
