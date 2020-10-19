@@ -19,14 +19,15 @@ import static org.hamcrest.Matchers.equalTo;
 public class TestGetAuthCode extends BaseApi {
 
     @Test
-    public void testGetAuthCode(){
+    public Response testGetAuthCode(){
         HashMap<String,String> telephone=new HashMap<>();
         telephone.put("telephone","123");
-        Response response=get("http://XXX.XXX.XXX.XXX:XX92/sso/getAuthCode",telephone);
+        Response response=get("http://XXX/sso/getAuthCode",telephone);
         Integer status=response.getStatusCode();
         JSONObject json = resToJson(response);
         System.out.println(json);
         assertThat(status,equalTo(200));
+        return response;
 
     }
 }
