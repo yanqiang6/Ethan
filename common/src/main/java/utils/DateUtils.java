@@ -26,8 +26,8 @@ public class DateUtils {
     public static java.util.Date getDate(int daysNumber){
         java.util.Date date = new java.util.Date(); // new DateUtils()为获取当前系统时间
         Calendar calendar = Calendar.getInstance(); //new一个Calendar类,把Date放进去，日期
+        calendar.setTime(date); //fix:需要放在add方法的前面
         calendar.add(Calendar.DATE,daysNumber);
-        calendar.setTime(date);
         return calendar.getTime();
     }
 

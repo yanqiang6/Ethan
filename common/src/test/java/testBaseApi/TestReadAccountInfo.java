@@ -16,7 +16,7 @@ import java.io.IOException;
 public class TestReadAccountInfo extends BaseUtils{
     @Test
     public void tesReadAccountInfo() throws IOException {
-        String path=getPath("\\src\\main\\resources\\config\\DemoConfig.yaml");
+        String path=getPath("/src/main/resources/config/envConfig.yaml");
         readAccountInfo(path,"test");
 
     }
