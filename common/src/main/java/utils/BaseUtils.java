@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import java.io.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static io.restassured.RestAssured.given;
@@ -58,6 +59,39 @@ public class BaseUtils {
             pro.setProperty(key,value);
         }
         pro.store(outFile,"save");
+    }
+    //将内容追加到文件中
+    public void appendContent(String content, String savePath) throws IOException {
+        BufferedWriter out;
+        FileWriter fileWriter=new FileWriter(savePath,true);//true表示追加打开,false会覆盖
+        out=new BufferedWriter(fileWriter);
+        out.write(content);
+        out.newLine();
+        out.close();
+    }
+    //创建日志文件
+    public void createNewFile(String savePath){
+        File file=new File(savePath);
+        if (!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("文件创建成功");
+        }
+    }
+    //重命名文件：增加日期前缀
+    public void renameFile(String savePath){
+        //按照日期重命名日志文件
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        java.util.Date now = new java.util.Date(); // new DateUtils()为获取当前系统时间
+        //System.out.println(timeFormat.format(now));
+        File file=new File(savePath);
+        String fileName=file.getName(); //获取路径下文件的原名
+        String timeName=timeFormat.format(now)+fileName; //在原文件名前加上文件名
+        String newPath=file.getPath().replace(fileName,timeName); //替换文件名，并生成新的路径名称
+        file.renameTo(new File(newPath)); //将文件重命名成新名字
     }
 
     //使用poi读取Excel文件,某个sheet页
